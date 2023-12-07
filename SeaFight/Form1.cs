@@ -841,6 +841,7 @@ namespace SeaFight
                         SoundsDown();
                         PlaySound(adder_str + "Sounds/win.mp3");
                         stepLabel.Text = "Победа!";
+                        round_started = false;
                         protocolWriter.Write("\nUser wins");
                         protocolWriter.Close();
                         stepLabel.Location = new Point((PictureBox.Width - stepLabel.Width) / 2, 50);
@@ -931,6 +932,7 @@ namespace SeaFight
                         protocolWriter.Write("\nAI wins\n");
                         protocolWriter.Close();
                         stepLabel.Text = "Поражение!";
+                        round_started = false;
                         stepLabel.Location = new Point((PictureBox.Width - stepLabel.Width) / 2, 50);
                         SettingsButton.Hide();
                         MenuButton.Show();
