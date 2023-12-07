@@ -56,7 +56,7 @@ namespace SeaFight
         bool loseNear_played = false;
         StreamWriter protocolWriter;
         string adder_str = "..\\..\\";
-
+        bool round_started = false;
         /************************************************************************************************/
 
 
@@ -426,6 +426,7 @@ namespace SeaFight
             stepLabel.Location = new Point((PictureBox.Width - stepLabel.Width) / 2, 50);
             stepLabel.Parent = PictureBox;
             stepLabel.Show();
+            round_started = true;
 
             DateTime protocolDate = DateTime.Now;
             string dateString = protocolDate.ToString("yyyy-MM-dd HH.mm.ss");
@@ -488,8 +489,9 @@ namespace SeaFight
             await Task.Delay(1000);
             mainImage = Graphics.FromImage(PictureBox.Image);
 
-            if (!mySea.isWin() && !AISea.isWin())
+            if (round_started)
             {
+                round_started = false;
                 protocolWriter.Write("\nGame stopped");
                 protocolWriter.Close();
             }
